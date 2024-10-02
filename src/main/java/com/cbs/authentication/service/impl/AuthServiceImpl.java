@@ -30,8 +30,8 @@ public class AuthServiceImpl implements AuthService {
 	 */
 	@Override
 	public String generateToken(AuthenticationDto userLogin) {
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(userLogin.getUsername(), userLogin.getPassword()));
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(userLogin.username(), userLogin.password()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		return jwtService.generateToken(authentication);
